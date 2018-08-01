@@ -1185,7 +1185,7 @@ class MCOC(ChampionFactory):
                 chance4 = round(float(xref['chance4'])*100,4)
                 pchance = round(chance4*p4,4)
                 em.add_field(name='PHC 4{0.star_char} Odds'.format(champ), value='{0}%'.format(pchance), inline=True)
-                em.add_field(name='4{0.star_char} {1} Odds'.format(champ, xref['4fb']), value='{0}%'.format(chance4),inline=True)
+                em.add_field(name='4{0.star_char} {1} Odds'.format(champ, xref['4b']), value='{0}%'.format(chance4),inline=True)
             if float(xref['chance5b']) >0 :
                 chance5=round(float(xref['chance5b'])*100,4)
                 em.add_field(name='5{0.star_char} Basic Odds'.format(champ), value='{0}%'.format(chance5),inline=True)
@@ -1813,6 +1813,7 @@ class MCOC(ChampionFactory):
 
     @submit.command(pass_context=True, name='stats')
     async def submit_stats(self, ctx, champ : ChampConverter, *, stats):
+        '''hp, atk, cr, cd, blockpen, critresist, armorpen, armor, bp'''
         guild = await self.check_guild(ctx)
         if not guild:
             await self.bot.say('This server is unauthorized.')
@@ -1860,7 +1861,7 @@ class MCOC(ChampionFactory):
             await self.bot.add_reaction(message, '❌')
             await self.bot.add_reaction(message, '🆗')
             react = await self.bot.wait_for_reaction(message=message,
-                    user=ctx.message.author, timeout=30, emoji=['❌', '🆗'])
+                    user=ctx.message.author, timeout=60, emoji=['❌', '🆗'])
             if react is not None:
                 if react.reaction.emoji == '❌':
                     await self.bot.say('Submission canceled.')
@@ -2606,7 +2607,7 @@ class Champion:
         for x in titles:
             if x in sigs:
                 title = x
-                #print('SIG TITLE is : ' + x)
+                print('SIG TITLE is : ' + x)
 
         if title is None:
             raise TitleError("'{}' title not found".format(mcocsig)) #, mcocsig)
@@ -2670,7 +2671,8 @@ class Champion:
                       '_DESC_E','_DESC_F','_DESC_G',
                       '_LONG','_LONG_1','_LONG_2','_LONG_3','_LONG_4','_LONG_5',
                       '_LONG1','_LONG2','_LONG3','_LONG4','_LONG5',
-                      '_LONG_A','_LONG_B', '_LONG_C',):
+                      '_LONG_A','_LONG_B', '_LONG_C',
+                      '_0','_1',):
                 if preamble + k + '_UPDATED' in sigs:
                     k = k + '_UPDATED'
                 if preamble + k in sigs:

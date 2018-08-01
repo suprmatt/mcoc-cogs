@@ -2,6 +2,7 @@ import discord
 import asyncio
 import urllib, json #For fetching JSON from alliancewar.com
 import os
+import requests
 from .utils.dataIO import dataIO
 from discord.ext import commands
 
@@ -213,8 +214,12 @@ class MCOCMaps:
         await self.pages_menu(ctx=ctx, embed_list=page_list, timeout=60, page=team-1)
 
     @commands.command(pass_context=True, aliases=('aw'))
-    async def warmap(self, ctx):
-        '''Alliance War 2.0 Map'''
+    async def warmap(self, ctx, *, maptype: str = 'expert'):
+        '''Alliance War 2.0 Map
+        '''
+        warmaps = {
+            'expert' : '_expert'
+        }
         mapurl = '{}warmap_2v2.png'.format(self.basepath)
         mapTitle = 'Alliance War 2.0 Map'
         em = discord.Embed(color=discord.Color.gold(),title=mapTitle)
@@ -255,17 +260,14 @@ class MCOCMaps:
                 await self.bot.remove_reaction(message, '❌')
                 await self.bot.remove_reaction(message, '🆗')
                 return True
+
+
 ### Beginning of AllianceWar.com integration
 
     @commands.command(pass_context=True, hidden=True)
     async def boost_info(self, ctx, boost):
-        # boosturl = 'http://www.alliancewar.com/global/ui/js/boosts.json'
-        # data = urllib.urlopen(boosturl).read()
-        if os.path.exists('data/mcocMaps/boosts.json'):
-            boosts = dataIO.load_json('data/mcocMaps/boosts.json')
-            # await self.bot.say('data loaded')
-        # boosts = json.loads(data)
-
+        boosturl = 'http://www.alliancewar.com/global/ui/js/boosts.json'
+        boosts = json.loads(requests.get(boosturl).text)
         keys = boosts.keys()
         if boost not in keys:
             await self.bot.say('Available boosts:\n'+'\n'.join(k for k in keys))
@@ -279,6 +281,57 @@ class MCOCMaps:
             em.add_field(name=title, value=text)
             em.set_footer(icon_url=JPAGS+'/aw/images/app_icon.jpg',text='JPAGS & AllianceWar.com')
             await self.bot.say(embed=em)
+
+    @commands.group(pass_context=True, aliases=['aw',])
+    async def alliancewar(self, ctx):
+        '''Alliancewar.com Commands [WIP]'''
+
+    @alliancewar.command(pass_context=True, hidden=True, name="node")
+    async def _node_info(self, ctx, nodeNumber, tier = 'expert'):
+        '''Report Node information.'''
+        season = 2
+        boosturl = 'http://www.alliancewar.com/global/ui/js/boosts.json'
+        boosts = json.loads(requests.get(boosturl).text)
+        # if boosts is not None:
+            # await self.bot.say('DEBUG: boosts.json loaded from alliancewar.com')
+        tiers = {'expert':discord.Color.gold(),'hard':discord.Color.red(),'challenger':discord.Color.orange(),'intermediate':discord.Color.blue(),'advanced':discord.Color.green()}
+        if tier in tiers:
+            pathurl = 'http://www.alliancewar.com/aw/js/aw_s{}_{}_9path.json'.format(season, tier)
+            paths = json.loads(requests.get(pathurl).text)
+            # if paths is not None:
+                # await self.bot.say('DEBUG: 9path.json loaded from alliancewar.com')
+            em = discord.Embed(color=tiers[tier], title='{} Node {} Boosts'.format(tier.title(), nodeNumber), descritpion='', url=JPAGS)
+            nodedetails = paths['boosts'][str(nodeNumber)]
+            for n in nodedetails:
+                title, text = '','No description. Report to @jpags#5202'
+                if ':' in n:
+                    nodename, bump = n.split(':')
+                else:
+                    nodename = n
+                    bump = 0
+                if nodename in boosts:
+                    title = boosts[nodename]['title']
+                    if boosts[nodename]['text'] is not '':
+                        text = boosts[nodename]['text']
+                        print('nodname: {}\ntitle: {}\ntext: {}'.format(nodename, boosts[nodename]['title'], boosts[nodename]['text']))
+                        if bump is not None:
+                            try:
+                                text = text.format(bump)
+                            except:  #wrote specifically for limber_percent
+                                text = text.replace('}%}','}%').format(bump)  #wrote specifically for limber_percent
+                            print('nodname: {}\ntitle: {}\nbump: {}\ntext: {}'.format(nodename, boosts[nodename]['title'], bump, boosts[nodename]['text']))
+                    else:
+                        text = 'Description text is missing from alliancwar.com.  Report to @jpags#5202.'
+                else:
+                    title = 'Error: {}'.format(nodename)
+                    value = 'Boost details for {} missing from alliancewar.com.  Report to @jpags#5202.'.format(nodename)
+                em.add_field(name=title, value=text, inline=False)
+            #     img = '{}/global/ui/images/booster/{}.png'.format(JPAGS, boosts['img'])
+            # em.set_thumbnail(url=img)
+            em.set_footer(icon_url=JPAGS+'/aw/images/app_icon.jpg',text='JPAGS & AllianceWar.com')
+            await self.bot.say(embed=em)
+        else:
+            await self.bot.say('Valid tiers include: advanced, intermediate, challenger, hard, expert')
 
 
 

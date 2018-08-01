@@ -1,16 +1,16 @@
 {
   "meta": {
     "format": "sparx",
-    "hash": "037757949267ea7fb86f7023e809e8ae6bcd58ae",
+    "hash": "55afe4bc415a02af1243a318c5771ce6229c0d8c",
     "language": "en",
     "post_processed": true,
-    "string_count": 856,
+    "string_count": 864,
     "tagged": [
       "special_attacks",
       "client"
     ],
-    "ts": 1529515194,
-    "versionLock": "19.0"
+    "ts": 1530823141,
+    "versionLock": "20.0"
   },
   "strings": [
     {
@@ -1067,6 +1067,21 @@
       "v": "He didn't miss. You might think he did, but he didn't."
     },
     {
+      "k": "ID_SPECIAL_ATTACK_DESCRIPTION_HEIMDALL_0",
+      "v": "Heimdall wields his uru sword Hofund with powerful sweeping blows, combining his natural strength with enchantments woven into the blade by Odin himself.",
+      "vn": "19.1"
+    },
+    {
+      "k": "ID_SPECIAL_ATTACK_DESCRIPTION_HEIMDALL_1",
+      "v": "Channeling the cosmic power of the stars themselves, Heimdall unleashes a blast of blue flame of terrifying power.",
+      "vn": "19.1"
+    },
+    {
+      "k": "ID_SPECIAL_ATTACK_DESCRIPTION_HEIMDALL_2",
+      "v": "Heimdall unlocks the Bifrost, unleashing the power of the rainbow bridge itself upon his opponent.",
+      "vn": "19.1"
+    },
+    {
       "k": "ID_SPECIAL_ATTACK_DESCRIPTION_HELA_0",
       "v": "Hela stabs for the heart of her opponent.",
       "vn": 16
@@ -1380,6 +1395,21 @@
       "vn": 15
     },
     {
+      "k": "ID_SPECIAL_ATTACK_DESCRIPTION_KORG_0",
+      "v": "Oh man, is that what this thing does? I thought it was just going to like, shoot some net or something. I oughta be careful this thing.",
+      "vn": "19.1"
+    },
+    {
+      "k": "ID_SPECIAL_ATTACK_DESCRIPTION_KORG_1",
+      "v": "When I was a kid, I said I wanted to be a tornado in class one day and all the other kids laughed at me. But now my dream came true!",
+      "vn": "19.1"
+    },
+    {
+      "k": "ID_SPECIAL_ATTACK_DESCRIPTION_KORG_2",
+      "v": "Miek said he wanted to help, but his legs are too small so I have to throw him and stuff. Don’t worry, his shell is quite resilient. I reckon he’ll be okay.",
+      "vn": "19.1"
+    },
+    {
       "k": "ID_SPECIAL_ATTACK_DESCRIPTION_LOKI_0",
       "v": "Loki slashes the opponent with his scepter, and then finishes them with a dark energy blast."
     },
@@ -1666,18 +1696,6 @@
     {
       "k": "ID_SPECIAL_ATTACK_DESCRIPTION_QUAKE_2",
       "v": "Quake generates a powerful earthquake, opening the ground and trapping the opponent before she deals her final vibration pulse attack."
-    },
-    {
-      "k": "ID_SPECIAL_ATTACK_DESCRIPTION_REDSKULL_0",
-      "v": "A signature attack is unleashed on the opponent."
-    },
-    {
-      "k": "ID_SPECIAL_ATTACK_DESCRIPTION_REDSKULL_1",
-      "v": "A signature attack is unleashed on the opponent."
-    },
-    {
-      "k": "ID_SPECIAL_ATTACK_DESCRIPTION_REDSKULL_2",
-      "v": "A signature attack is unleashed on the opponent."
     },
     {
       "k": "ID_SPECIAL_ATTACK_DESCRIPTION_RHINO_0",
@@ -2475,6 +2493,21 @@
       "v": "Explosive Barrage"
     },
     {
+      "k": "ID_SPECIAL_ATTACK_HEIMDALL_0",
+      "v": "Hofund",
+      "vn": "19.1"
+    },
+    {
+      "k": "ID_SPECIAL_ATTACK_HEIMDALL_1",
+      "v": "Blue Flame of the Stars",
+      "vn": "19.1"
+    },
+    {
+      "k": "ID_SPECIAL_ATTACK_HEIMDALL_2",
+      "v": "Master of the Bifrost",
+      "vn": "19.1"
+    },
+    {
       "k": "ID_SPECIAL_ATTACK_HELA_0",
       "v": "Fury of the Dead",
       "vn": 16
@@ -2787,6 +2820,21 @@
       "vn": 15
     },
     {
+      "k": "ID_SPECIAL_ATTACK_KORG_0",
+      "v": "Hey, take it easy man!",
+      "vn": "19.1"
+    },
+    {
+      "k": "ID_SPECIAL_ATTACK_KORG_1",
+      "v": "Rocknado",
+      "vn": "19.1"
+    },
+    {
+      "k": "ID_SPECIAL_ATTACK_KORG_2",
+      "v": "Friendly Fire",
+      "vn": "19.1"
+    },
+    {
       "k": "ID_SPECIAL_ATTACK_LOKI_0",
       "v": "Curse of Agony"
     },
@@ -3073,18 +3121,6 @@
     {
       "k": "ID_SPECIAL_ATTACK_QUAKE_2",
       "v": "Epicenter"
-    },
-    {
-      "k": "ID_SPECIAL_ATTACK_REDSKULL_0",
-      "v": "Special Attack 1"
-    },
-    {
-      "k": "ID_SPECIAL_ATTACK_REDSKULL_1",
-      "v": "Special Attack 2"
-    },
-    {
-      "k": "ID_SPECIAL_ATTACK_REDSKULL_2",
-      "v": "Special Attack 3"
     },
     {
       "k": "ID_SPECIAL_ATTACK_RHINO_0",
